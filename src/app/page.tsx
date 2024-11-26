@@ -51,7 +51,7 @@ export default function Home() {
               ) => (
                 <li
                   key={index}
-                  className="whitespace-nowrap hover:bg-slate-800 justify-center text-center"
+                  className="whitespace-nowrap hover:bg-slate-800 justify-center text-center rounded-md"
                 >
                   <a href={p.url} className="justify-center">
                     {capitalizeFirstLetter(p.name)}
