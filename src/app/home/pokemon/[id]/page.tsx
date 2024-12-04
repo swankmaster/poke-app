@@ -49,8 +49,8 @@ export default function PokemonDetails() {
                     key={index}
                     className={`p-2 ${
                       pokeId === id
-                        ? "bg-blue-500 font-bold text-white"
-                        : "hover:bg-gray-700 text-white"
+                        ? "bg-blue-500 font-bold text-white rounded-md"
+                        : "hover:bg-gray-700 text-white rounded-md"
                     }`}
                   >
                     <a href={`/pokemon/${pokeId}`}>
@@ -67,7 +67,7 @@ export default function PokemonDetails() {
       </div>
 
       {/* pokemon info */}
-      <div className="flex flex-col items-center p-8">
+      <div className="flex-1 flex justify-center items-start p-8">
         {error && <p>Error: {error}</p>}
         {!pokemon && !error && <p>Loading...</p>}
         {pokemon && (
@@ -75,9 +75,11 @@ export default function PokemonDetails() {
             <h1 className="text-3xl font-bold">
               {CapitalizeFirstLetter(pokemon.name)}
             </h1>
-            <p>Base Experience: {pokemon.base_experience}</p>
-            <p>Height: {pokemon.height}</p>
-            <p>Weight: {pokemon.height}</p>
+            <div className="p-8">
+              <p>Base Experience: {pokemon.base_experience}</p>
+              <p>Height: {pokemon.height}</p>
+              <p>Weight: {pokemon.height}</p>
+            </div>
           </div>
         )}
       </div>
