@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Pokemon from "./components/Pokemon";
 
 const getPokemon = async () => {
   const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1302");
