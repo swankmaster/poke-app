@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
         source: "/pokemon/:id",
         destination: "/home/pokemon/:id",
         permanent: false,
-      }
+      },
     ]
   }
 };
