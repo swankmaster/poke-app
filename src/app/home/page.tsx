@@ -1,15 +1,16 @@
 "use client";
+import { usePokemonContext } from "@/context/PokemonContext";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
-const getPokemon = async () => {
-  const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1302");
-  if (!response.ok) {
-    throw new Error(`Failed to fetch: ${response.statusText}`);
-  }
-
-  return response.json();
-};
+// const getPokemon = async () => {
+//   const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1302");
+//   if (!response.ok) {
+//     throw new Error(`Failed to fetch: ${response.statusText}`);
+//   }
+//   const data = await response.json();
+//   return data;
+// };
 
 export function CapitalizeFirstLetter(str: string): string {
   if (str.length === 0) return str; // Handle empty strings
@@ -17,21 +18,8 @@ export function CapitalizeFirstLetter(str: string): string {
 }
 
 export default function Home() {
-  const [pokemons, setPokemons] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchPokemon = async () => {
-      try {
-        const data = await getPokemon();
-        setPokemons(data);
-      } catch (err: any) {
-        setError(err.message);
-      }
-    };
-
-    fetchPokemon();
-  }, []);
+  const { pokemons, error } = usePokemonContext();
+  // const [error, setError] = useState<string | null>(null);
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
