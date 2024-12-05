@@ -75,6 +75,11 @@ export default function PokemonDetails() {
             <h1 className="text-3xl font-bold">
               {CapitalizeFirstLetter(pokemon.name)}
             </h1>
+            <div className="flex items-center justify-center">
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+              />
+            </div>
             <div className="p-8">
               <p>Base Experience: {pokemon.base_experience}</p>
               <p>Height: {pokemon.height}</p>
