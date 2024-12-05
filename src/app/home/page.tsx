@@ -1,6 +1,7 @@
 "use client";
 import { usePokemonContext } from "@/context/PokemonContext";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
 // const getPokemon = async () => {
@@ -28,32 +29,41 @@ export default function Home() {
         {!pokemons && !error && <p>Loading...</p>}
         {/* {pokemons && <p>{JSON.stringify(pokemons.results[0])}</p>} */}
         {pokemons && (
-          <ul className="list-outside hover:list-inside" key="pokemon-list">
-            {pokemons.results.map(
-              (
-                p: {
-                  url: string | undefined;
-                  name: any;
-                },
-                index: React.Key | null | undefined
-              ) => {
-                const id = (p.url as string).split("/").filter(Boolean).pop();
-                return (
-                  <li
-                    key={index}
-                    className="whitespace-nowrap hover:bg-slate-800 justify-center text-center rounded-md"
-                  >
-                    <Link
-                      href={`/home/pokemon/${id}`}
-                      className="justify-center"
+          <>
+            <ul className="list-outside hover:list-inside" key="pokemon-list">
+              <Image
+                src="/International_Pokémon_logo.svg.png"
+                alt="Pokémon Logo"
+                width={250} // Specify desired width
+                height={100} // Specify desired height
+              />
+
+              {pokemons.results.map(
+                (
+                  p: {
+                    url: string | undefined;
+                    name: any;
+                  },
+                  index: React.Key | null | undefined
+                ) => {
+                  const id = (p.url as string).split("/").filter(Boolean).pop();
+                  return (
+                    <li
+                      key={index}
+                      className="whitespace-nowrap hover:bg-slate-800 justify-center text-center rounded-md"
                     >
-                      {CapitalizeFirstLetter(p.name)}
-                    </Link>
-                  </li>
-                );
-              }
-            )}
-          </ul>
+                      <Link
+                        href={`/home/pokemon/${id}`}
+                        className="justify-center"
+                      >
+                        {CapitalizeFirstLetter(p.name)}
+                      </Link>
+                    </li>
+                  );
+                }
+              )}
+            </ul>
+          </>
         )}
       </main>
     </div>
