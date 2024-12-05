@@ -9,6 +9,7 @@ const fetchPokemonList = async () => {
   if (!response.ok) {
     throw new Error(`Failed fetch: ${response.statusText}`);
   }
+
   return response.json();
 };
 
@@ -27,6 +28,9 @@ export const PokemonProvider = ({
       if (pokemons) return;
       try {
         const data = await fetchPokemonList();
+        data.results.sort((a: { name: string }, b: { name: string }) =>
+          a.name.localeCompare(b.name)
+        );
         setPokemons(data);
       } catch (err: any) {
         setError(err.message);
