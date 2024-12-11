@@ -1,8 +1,8 @@
 "use client";
-import { usePokemonContext } from "@/context/PokemonContext";
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { usePokemonContext } from "@/context/PokemonProvider";
 
 // const getPokemon = async () => {
 //   const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1302");

@@ -1,8 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { CapitalizeFirstLetter } from "../../page";
-import { usePokemonContext } from "@/context/PokemonContext";
+import { usePokemonContext } from "@/context/PokemonProvider";
 
 const getPokemonDetails = async (id: string) => {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
