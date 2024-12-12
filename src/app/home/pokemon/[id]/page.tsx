@@ -83,27 +83,61 @@ export default function PokemonDetails() {
       </div>
 
       {/* pokemon info */}
-      <div className="flex-1 flex justify-center items-start p-8">
-        {error && <p>Error: {error}</p>}
-        {!pokemon && !error && <p>Loading...</p>}
-        {pokemon && (
-          <div className="text-center">
-            <h1 className="text-3xl font-bold">
-              {CapitalizeFirstLetter(pokemon.name)}
-            </h1>
-            <div className="flex items-center justify-center">
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-              />
-            </div>
-            <div className="p-8">
-              <p>Base Experience: {pokemon.base_experience}</p>
-              <p>Height: {pokemon.height}</p>
-              <p>Weight: {pokemon.height}</p>
-            </div>
-          </div>
-        )}
-      </div>
+      <table className="table-auto mx-auto border-collapse border border-gray-500">
+        <tbody>
+          {error && (
+            <tr className="border-b border-gray-500">
+              <td colSpan={2} className="p-4 text-red-500 text-center">
+                Error: {error}
+              </td>
+            </tr>
+          )}
+          {!pokemon && !error && (
+            <tr className="border-b border-gray-500">
+              <td colSpan={2} className="p-4 text-center">
+                Loading...
+              </td>
+            </tr>
+          )}
+          {pokemon && (
+            <>
+              {/* Pokémon Name Row */}
+              <tr className="border-b border-gray-500">
+                <td colSpan={2} className="px-1 py-1 text-center p-4">
+                  <h1 className="text-3xl font-bold">
+                    {CapitalizeFirstLetter(pokemon.name)}
+                  </h1>
+                </td>
+              </tr>
+
+              {/* Pokémon Image Row */}
+              <tr className="border-b border-gray-500">
+                <td colSpan={2} className="text-center p-4">
+                  <img
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+                    alt={`${CapitalizeFirstLetter(pokemon.name)} Sprite`}
+                    className="mx-auto"
+                  />
+                </td>
+              </tr>
+
+              {/* Pokémon Stats Row */}
+              <tr>
+                <td className="text-center">Base Experience:</td>
+                <td className="text-center">{pokemon.base_experience}</td>
+              </tr>
+              <tr>
+                <td className="text-center">Height:</td>
+                <td className="text-center">{pokemon.height}</td>
+              </tr>
+              <tr>
+                <td className="text-center">Weight:</td>
+                <td className="text-center">{pokemon.weight}</td>
+              </tr>
+            </>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 }
