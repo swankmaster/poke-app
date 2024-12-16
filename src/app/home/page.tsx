@@ -1,17 +1,8 @@
 "use client";
-import { usePokemonContext } from "@/context/PokemonContext";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
-
-// const getPokemon = async () => {
-//   const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1302");
-//   if (!response.ok) {
-//     throw new Error(`Failed to fetch: ${response.statusText}`);
-//   }
-//   const data = await response.json();
-//   return data;
-// };
+import React from "react";
+import { usePokemonContext } from "@/context/PokemonProvider";
 
 export function CapitalizeFirstLetter(str: string): string {
   if (str.length === 0) return str; // Handle empty strings
@@ -19,15 +10,12 @@ export function CapitalizeFirstLetter(str: string): string {
 }
 
 export default function Home() {
-  const { pokemons, error } = usePokemonContext();
-  // const [error, setError] = useState<string | null>(null);
+  const { pokemons } = usePokemonContext();
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        {error && <p>Error: {error}</p>}
-        {!pokemons && !error && <p>Loading...</p>}
-        {/* {pokemons && <p>{JSON.stringify(pokemons.results[0])}</p>} */}
+        {!pokemons && <p>Loading...</p>}
         {pokemons && (
           <>
             <ul className="list-outside hover:list-inside" key="pokemon-list">
