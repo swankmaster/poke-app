@@ -7,6 +7,9 @@ import Link from "next/link";
 interface Pokemon {
   name: string;
   url: string;
+  base_experience: number;
+  height: number;
+  weight: number;
 }
 
 export function CapitalizeFirstLetter(str: string): string {
@@ -14,7 +17,13 @@ export function CapitalizeFirstLetter(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export default function PokemonDetail({ id, pokemon, error = null }) {
+export default function PokemonDetail({
+  id,
+  pokemon,
+}: {
+  id: string;
+  pokemon: Pokemon;
+}) {
   const { pokemons } = usePokemonContext();
 
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -22,7 +31,7 @@ export default function PokemonDetail({ id, pokemon, error = null }) {
   const filteredPokemons = pokemons?.results.filter((pokemon: Pokemon) =>
     pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
+  // throw new Error();
   return (
     // nav bar
     <div className="flex h-screen">
@@ -64,8 +73,6 @@ export default function PokemonDetail({ id, pokemon, error = null }) {
 
       {/* pokemon info */}
       <div className="flex-1 flex justify-center items-start p-8">
-        {error && <p>Error: {error}</p>}
-        {!pokemon && !error && <p>Loading...</p>}
         {pokemon && (
           <div className="text-center">
             <h1 className="text-3xl font-bold">
@@ -79,7 +86,7 @@ export default function PokemonDetail({ id, pokemon, error = null }) {
             <div className="p-8">
               <p>Base Experience: {pokemon.base_experience}</p>
               <p>Height: {pokemon.height}</p>
-              <p>Weight: {pokemon.height}</p>
+              <p>Weight: {pokemon.weight}</p>
             </div>
           </div>
         )}
