@@ -1,10 +1,9 @@
-"use client";
-import React, { Suspense, lazy } from "react";
-import { usePokemonContext } from "@/context/PokemonProvider";
+import React, { Suspense } from "react";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import LoadingSpinner from "./components/LoadingSpinner";
+import ServerPokemonList from "./components/ServerPokemonList";
 
-const LazyPokemonList = lazy(() => import("@/app/home/components/PokemonList"));
+// const LazyPokemonList = lazy(() => import("@/app/home/components/PokemonList"));
 
 export default function Home() {
   return (
@@ -14,7 +13,8 @@ export default function Home() {
           fallback={<p className="text-red-500">Failed to load Pokemon</p>}
         >
           <Suspense fallback={<LoadingSpinner />}>
-            <LazyPokemonList />
+            <ServerPokemonList />
+            {/* <LazyPokemonList /> */}
           </Suspense>
         </ErrorBoundary>
       </main>
